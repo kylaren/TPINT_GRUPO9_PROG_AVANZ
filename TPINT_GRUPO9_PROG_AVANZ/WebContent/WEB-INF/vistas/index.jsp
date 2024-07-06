@@ -8,21 +8,80 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Pagina 1</title>
+<title>Home</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 0;
+    }
+
+    .banner {
+        background-color: #000;
+        color: white;
+        padding: 10px 20px;
+        position: relative;
+        width: 100%;
+        top: 0;
+        left: 0;
+        display: flex;
+        align-items: center;
+    }
+
+    .banner form {
+        display: flex;
+        align-items: center;
+        background-color: #000; 
+    }
+
+    .banner input[type="submit"] {
+        background-color: #000; 
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 25px;
+        margin: 0 10px; 
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    .banner input[type="submit"]:hover {
+        background-color: #555; 
+    }
+
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: calc(100vh - 60px);
+        background-color: #f0f0f0;
+    }
+
+    form {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+</style>
 </head>
 <body>
 
-	<form action="redireccionar.html" method="get">
-	
-		<security:authorize access="hasRole('administrador')">
-			<input type="submit" value="Clientes" name= "page">
-		</security:authorize>
-	
-		<security:authorize access="hasRole('usuario')">
-			<input type="submit" value="Prestamos" name= "page">
-		</security:authorize>
-		
-	</form>
+    <div class="banner">
+        <form action="redireccionar.html" method="get">
+            <security:authorize access="hasRole('administrador')">
+                <input type="submit" value="Clientes" name="page">
+            </security:authorize>
+        
+            <security:authorize access="hasRole('usuario')">
+                <input type="submit" value="Prestamos" name="page">
+            </security:authorize>
+        </form>
+    </div>
 
 
 </body>

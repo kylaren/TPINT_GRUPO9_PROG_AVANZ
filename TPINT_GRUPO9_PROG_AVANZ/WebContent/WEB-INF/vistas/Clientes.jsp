@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="es">
 <head>
@@ -18,14 +20,14 @@
 		<h2 class="d-flex justify-content-between align-items-center"
 			style="background-color: black; color: white; padding: 10px; font-size: 1.5em;">
 			<span style="margin-left: 10px;">Clientes</span>
+			
+			<span style="color: white; margin-right:10px"> User: <security:authentication property="principal.username"/> </span>
+			
 			<form:form action="${pageContext.request.contextPath}/logout"
 				method="POST">
 				<input type="submit" class="btn btn-primary" value="Cerrar Sesión" />
 			</form:form>
 		</h2>
-
-
-
 
 		<table id="clientesTable" class="display">
 			<thead>

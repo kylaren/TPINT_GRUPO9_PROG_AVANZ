@@ -8,8 +8,6 @@ public class SpringController {
 
 	@GetMapping("/")
 	public String showIndex() {
-	
-	
 		return "index";
 	}
 }

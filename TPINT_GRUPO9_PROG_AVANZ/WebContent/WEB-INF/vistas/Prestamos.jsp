@@ -4,16 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Pagina 1</title>
+<title>Insert title here</title>
 </head>
 <body>
-
-	<form action="redireccionar.html" method="get">
-	
-		<input type="submit" value="Clientes" name= "page">
-		<input type="submit" value="Prestamos" name= "page">
-	</form>
-
-
+PRESTAMOS
 </body>
 </html>

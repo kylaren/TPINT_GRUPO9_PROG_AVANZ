@@ -30,7 +30,8 @@ public class SeguridadAppConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().anyRequest().authenticated().and().formLogin()
 		.loginPage("/formularioLogin")
 		.loginProcessingUrl("/autenticacionUsuario")
-		.permitAll();
+		.permitAll()
+		.and().logout().permitAll();
 	}
 
 	

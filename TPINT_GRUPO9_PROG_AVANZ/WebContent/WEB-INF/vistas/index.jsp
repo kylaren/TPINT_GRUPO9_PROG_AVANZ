@@ -20,13 +20,21 @@
     .banner {
         background-color: #000;
         color: white;
-        padding: 10px 20px;
+        padding: 25px 20px;
         position: relative;
         width: 100%;
         top: 0;
         left: 0;
         display: flex;
         align-items: center;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .banner h1 {
+    	width: 100%;
+    }
+    .banner a {
+    	color: white;
     }
 
     .banner form {
@@ -67,20 +75,20 @@
         border-radius: 10px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
+    
 </style>
 </head>
 <body>
 
     <div class="banner">
-        <form action="redireccionar.html" method="get">
-            <security:authorize access="hasRole('administrador')">
-                <input type="submit" value="Clientes" name="page">
-            </security:authorize>
-        
-            <security:authorize access="hasRole('usuario')">
-                <input type="submit" value="Prestamos" name="page">
-            </security:authorize>
-        </form>
+   		<security:authorize access="hasRole('administrador')">
+   			<h1>Bienvenido administrador</h1>           
+          	<a href="${pageContext.request.contextPath}/Clientes">Ver clientes ></a>    
+         </security:authorize>
+         <security:authorize access="hasRole('cliente')">
+         	<h1>Bienvenido usuario</h1> 
+           <a href="${pageContext.request.contextPath}/Prestamos">Ver prestamos disponibles ></a> 
+         </security:authorize>
     </div>
 
 

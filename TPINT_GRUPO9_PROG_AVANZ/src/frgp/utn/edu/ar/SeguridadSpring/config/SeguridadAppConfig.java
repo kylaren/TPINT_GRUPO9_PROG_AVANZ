@@ -27,8 +27,8 @@ public class SeguridadAppConfig extends WebSecurityConfigurerAdapter {
         UserBuilder usuarios = User.builder().passwordEncoder(encoder::encode);
 
 		auth.inMemoryAuthentication()
-		.withUser(usuarios.username("admin").password("admin").roles("administrador"))
-		.withUser(usuarios.username("usuario").password("123").roles("usuario"));
+		.withUser(usuarios.username("admin").password("admin").roles("usuario","administrador"))
+		.withUser(usuarios.username("usuario").password("123").roles("usuario", "cliente"));
 	
 		
 	}
@@ -36,11 +36,16 @@ public class SeguridadAppConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		
-		http.authorizeRequests().anyRequest().authenticated().and().formLogin()
+		http.authorizeRequests()
+		.antMatchers("/").hasRole("usuario")
+		.antMatchers("/Clientes").hasRole("administrador")
+		.antMatchers("/Prestamos").hasRole("cliente")
+		.and().formLogin()
 		.loginPage("/formularioLogin")
 		.loginProcessingUrl("/autenticacionUsuario")
 		.permitAll()
-		.and().logout().permitAll();
+		.and().logout().permitAll()
+		.and().exceptionHandling().accessDeniedPage("/acceso-denegado");
 	}
 
 	

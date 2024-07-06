@@ -10,4 +10,19 @@ public class SpringController {
 	public String showIndex() {
 		return "index";
 	}
+	
+	@GetMapping("/Clientes")
+	public String showClients() {
+		return "Clientes";
+	}
+	
+	@GetMapping("/Prestamos")
+	public String showLoans() {
+		return "Prestamos";
+	}
+	
+	@GetMapping("/acceso-denegado")
+	public String show403Page() {
+		return "acceso-denegado";
+	}
 }

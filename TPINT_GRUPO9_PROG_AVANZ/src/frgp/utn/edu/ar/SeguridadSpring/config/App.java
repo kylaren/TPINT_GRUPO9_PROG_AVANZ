@@ -17,8 +17,10 @@ public class App {
 		
 		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
 		
+		// Setea ruta a las vistas
 		viewResolver.setPrefix("/WEB-INF/vistas/");
 		
+		// Setea sufijo de las vistas
 		viewResolver.setSuffix(".jsp");
 		
 		return viewResolver;

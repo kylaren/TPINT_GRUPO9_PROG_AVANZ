@@ -10,12 +10,15 @@ public class ServletSpringInitializer extends AbstractAnnotationConfigDispatcher
 		return null;
 	}
 
+	
+	// Indica cual es la clase de configuración
 	@Override
 	protected Class<?>[] getServletConfigClasses() {
 		// TODO Auto-generated method stub
 		return new Class[] {App.class};
 	}
 
+	// Indica la raiz /
 	@Override
 	protected String[] getServletMappings() {
 		// TODO Auto-generated method stub

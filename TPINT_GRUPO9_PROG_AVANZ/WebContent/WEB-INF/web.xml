@@ -6,6 +6,10 @@
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
   
+  <session-config>
+    <session-timeout>30</session-timeout> <!-- Timeout en minutos -->
+</session-config>
+
   <servlet>
 	  	<servlet-name>spring</servlet-name>
 	  	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>

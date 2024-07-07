@@ -25,4 +25,9 @@ public class SpringController {
 	public String show403Page() {
 		return "acceso-denegado";
 	}
+	
+	@GetMapping("/sesion-vencida")
+	public String sesionVencida() {
+		return "sesion-vencida";
+	}
 }

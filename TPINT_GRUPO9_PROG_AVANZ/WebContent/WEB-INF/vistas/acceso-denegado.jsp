@@ -5,9 +5,29 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>403 prohibido</title>
+<style>
+	div {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	width: 100%;
+	font-family: helvetica;
+	}
+   div h1 {
+   	width: 100%;
+   	text-align: center;
+   }
+   
+   div a {
+   	color: #0066cc;
+   }
+    
+</style>
 </head>
 <body>
-	<h1>403 - no tiene los permisos para ingresar a esta sección</h1>
+<div>
+	<h1>403 - No tiene los permisos para ingresar a esta sección</h1>
 	<a href="${pageContext.request.contextPath}/">Volver al inicio</a>  
+</div>
 </body>
 </html>

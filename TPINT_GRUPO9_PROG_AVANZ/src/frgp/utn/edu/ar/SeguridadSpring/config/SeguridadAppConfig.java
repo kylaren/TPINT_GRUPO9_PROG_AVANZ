@@ -7,10 +7,12 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.User.UserBuilder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 @Configuration
 @EnableWebSecurity
@@ -19,6 +21,25 @@ public class SeguridadAppConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+    
+    @Bean
+    public AuthenticationSuccessHandler authenticationSuccessHandler() {
+        return (request, response, authentication) -> {
+        	String contextPath = request.getContextPath();
+            if (authentication != null && authentication.getAuthorities() != null) {
+                for (GrantedAuthority authority : authentication.getAuthorities()) {
+                    if (authority.getAuthority().equals("ROLE_administrador")) {
+                        response.sendRedirect(contextPath + "/Clientes");
+                        return;
+                    } else if (authority.getAuthority().equals("ROLE_cliente")) {
+                        response.sendRedirect(contextPath + "/Prestamos");
+                        return;
+                    }
+                }
+            }
+            response.sendRedirect(contextPath + "/");
+        };
     }
 
 	@Override
@@ -44,6 +65,7 @@ public class SeguridadAppConfig extends WebSecurityConfigurerAdapter {
 		.and().formLogin()
 		.loginPage("/formularioLogin")
 		.loginProcessingUrl("/autenticacionUsuario")
+        .successHandler(authenticationSuccessHandler())
 		.permitAll()
 		.and().logout()
         .logoutSuccessUrl("/formularioLogin?logout=true") // Añadir un parámetro de mensaje // Página a la que redirige después de cerrar sesión
@@ -57,7 +79,4 @@ public class SeguridadAppConfig extends WebSecurityConfigurerAdapter {
         .expiredUrl("/sesion-vencida");
         
 	}
-
-	
-	
 }

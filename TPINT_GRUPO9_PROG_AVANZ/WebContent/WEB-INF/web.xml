@@ -3,7 +3,7 @@
   <display-name>TPINT_GRUPO9_PROG_AVANZ</display-name>
  
   <welcome-file-list>
-    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>formularioLogin.html</welcome-file>
   </welcome-file-list>
   
   <session-config>

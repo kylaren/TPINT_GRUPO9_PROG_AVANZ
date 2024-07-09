@@ -2,32 +2,46 @@ package frgp.utn.edu.ar.SeguridadSpring.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class SpringController {
 
-	@GetMapping("/")
-	public String showIndex() {
-		return "index";
+	@RequestMapping("formularioLogin.html")
+	public ModelAndView MostrarLogin() {
+		ModelAndView mv= new ModelAndView("login");
+		return mv;
 	}
 	
-	@GetMapping("/Clientes")
-	public String showClients() {
-		return "Clientes";
+	@RequestMapping("/index.html")
+	public ModelAndView showIndex() {
+		ModelAndView mv = new ModelAndView("index");
+		return mv;
 	}
 	
-	@GetMapping("/Prestamos")
-	public String showLoans() {
-		return "Prestamos";
+	@RequestMapping("/Clientes.html")
+	public ModelAndView mostrarClientes() {
+		ModelAndView mv = new ModelAndView("Clientes");
+		return mv;
 	}
 	
-	@GetMapping("/acceso-denegado")
-	public String show403Page() {
-		return "acceso-denegado";
+	
+	@RequestMapping("/Prestamos.html")
+	public ModelAndView showLoans() {
+		ModelAndView mv = new ModelAndView("Prestamos");
+		return mv;
 	}
 	
-	@GetMapping("/sesion-vencida")
-	public String sesionVencida() {
-		return "sesion-vencida";
+	@RequestMapping("/acceso-denegado.html")
+	public ModelAndView show403Page() {
+		ModelAndView mv = new ModelAndView("acceso-denegado");
+		return mv;
+	}
+	
+	@RequestMapping("/sesion-vencida.html")
+	public ModelAndView sesionVencida() {
+		ModelAndView mv = new ModelAndView("sesion-vencida");
+		return mv;
 	}
 }

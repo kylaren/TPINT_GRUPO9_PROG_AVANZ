@@ -23,24 +23,6 @@ public class SeguridadAppConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
     
-    @Bean
-    public AuthenticationSuccessHandler authenticationSuccessHandler() {
-        return (request, response, authentication) -> {
-        	String contextPath = request.getContextPath();
-            if (authentication != null && authentication.getAuthorities() != null) {
-                for (GrantedAuthority authority : authentication.getAuthorities()) {
-                    if (authority.getAuthority().equals("ROLE_administrador")) {
-                        response.sendRedirect(contextPath + "/Clientes");
-                        return;
-                    } else if (authority.getAuthority().equals("ROLE_cliente")) {
-                        response.sendRedirect(contextPath + "/Prestamos");
-                        return;
-                    }
-                }
-            }
-            response.sendRedirect(contextPath + "/");
-        };
-    }
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -50,9 +32,7 @@ public class SeguridadAppConfig extends WebSecurityConfigurerAdapter {
 
 		auth.inMemoryAuthentication()
 		.withUser(usuarios.username("admin").password("admin").roles("usuario","administrador"))
-		.withUser(usuarios.username("usuario").password("123").roles("usuario", "cliente"));
-	
-		
+		.withUser(usuarios.username("usuario").password("123").roles("usuario", "cliente"));	
 	}
 
 	@Override
@@ -60,23 +40,43 @@ public class SeguridadAppConfig extends WebSecurityConfigurerAdapter {
 		
 		http.authorizeRequests()
 		.antMatchers("/").hasRole("usuario")
-		.antMatchers("/Clientes").hasRole("administrador")
-		.antMatchers("/Prestamos").hasRole("cliente")
+		.antMatchers("/Clientes.html").hasRole("administrador")
+		.antMatchers("/Prestamos.html").hasRole("cliente")
 		.and().formLogin()
-		.loginPage("/formularioLogin")
-		.loginProcessingUrl("/autenticacionUsuario")
+		.loginPage("/login")
+		.loginProcessingUrl("/formularioLogin.html")
+		.failureUrl("/formularioLogin.html?error=true")
         .successHandler(authenticationSuccessHandler())
 		.permitAll()
 		.and().logout()
-        .logoutSuccessUrl("/formularioLogin?logout=true") // Añadir un parámetro de mensaje // Página a la que redirige después de cerrar sesión
+        .logoutSuccessUrl("/formularioLogin.html?logout=true") // Añadir un parámetro de mensaje // Página a la que redirige después de cerrar sesión
 	    .invalidateHttpSession(true) // Invalidar la sesión HTTP al cerrar sesión
 	    .deleteCookies("JSESSIONID") // Eliminar cookies relacionadas con la sesión si las hay
-		.and().exceptionHandling().accessDeniedPage("/acceso-denegado")
+		.and().exceptionHandling().accessDeniedPage("/acceso-denegado.html")
         .and().sessionManagement()
         .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
-        .invalidSessionUrl("/sesion-vencida")
+        .invalidSessionUrl("/sesion-vencida.html")
         .maximumSessions(1)
-        .expiredUrl("/sesion-vencida");
-        
+        .expiredUrl("/sesion-vencida.html");        
 	}
+	
+	
+	@Bean
+	public AuthenticationSuccessHandler authenticationSuccessHandler() {
+		return (request, response, authentication) -> {
+			String contextPath = request.getContextPath();
+			if (authentication != null && authentication.getAuthorities() != null) {
+				for (GrantedAuthority authority : authentication.getAuthorities()) {
+					if (authority.getAuthority().equals("ROLE_administrador")) {
+						response.sendRedirect("Clientes.html");
+						return;
+					} else if (authority.getAuthority().equals("ROLE_cliente")) {
+						response.sendRedirect("Prestamos.html");
+						return;
+					}
+				}  
+			}
+			response.sendRedirect(contextPath + "/");
+		};
+	}	
 }

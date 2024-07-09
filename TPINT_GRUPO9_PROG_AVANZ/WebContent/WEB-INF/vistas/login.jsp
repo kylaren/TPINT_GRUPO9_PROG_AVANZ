@@ -20,7 +20,7 @@
 <div class="container" style="margin-top: 50px;">
     <div class="row justify-content-center">
         <div class="col-md-4">
-            <form:form action="${pageContext.request.contextPath}/autenticacionUsuario" method="POST" style="text-align: center;">
+            <form:form action="formularioLogin.html" method="POST" style="text-align: center;">
                 <div class="form-group">
                     <label for="username">Usuario:</label>
                     <input type="text" name="username" class="form-control" style="text-align: center;" />

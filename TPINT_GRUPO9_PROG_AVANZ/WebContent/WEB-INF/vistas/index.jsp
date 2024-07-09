@@ -83,11 +83,11 @@
     <div class="banner">
    		<security:authorize access="hasRole('administrador')">
    			<h1>Bienvenido administrador</h1>           
-          	<a href="${pageContext.request.contextPath}/Clientes">Ver clientes ></a>    
+          	<a href="Clientes.html">Ver clientes ></a>    
          </security:authorize>
          <security:authorize access="hasRole('cliente')">
          	<h1>Bienvenido usuario</h1> 
-           <a href="${pageContext.request.contextPath}/Prestamos">Ver prestamos disponibles ></a> 
+           <a href="Prestamos.html">Ver prestamos disponibles ></a> 
          </security:authorize>
     </div>
 

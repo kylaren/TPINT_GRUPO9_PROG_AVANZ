@@ -27,7 +27,7 @@
 <body>
 <div>
 	<h1>403 - No tiene los permisos para ingresar a esta sección</h1>
-	<a href="${pageContext.request.contextPath}/">Volver al inicio</a>  
+	<a href="index.html">Volver al inicio</a>  
 </div>
 </body>
 </html>

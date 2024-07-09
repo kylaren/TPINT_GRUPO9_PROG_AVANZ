@@ -10,38 +10,31 @@ public class SpringController {
 
 	@RequestMapping("formularioLogin.html")
 	public ModelAndView MostrarLogin() {
-		ModelAndView mv= new ModelAndView("login");
-		return mv;
+		return new ModelAndView("login");
 	}
 	
 	@RequestMapping("/index.html")
 	public ModelAndView showIndex() {
-		ModelAndView mv = new ModelAndView("index");
-		return mv;
+		return new ModelAndView("index");
 	}
 	
 	@RequestMapping("/Clientes.html")
 	public ModelAndView mostrarClientes() {
-		ModelAndView mv = new ModelAndView("Clientes");
-		return mv;
+		return new ModelAndView("Clientes");
 	}
-	
-	
+		
 	@RequestMapping("/Prestamos.html")
 	public ModelAndView showLoans() {
-		ModelAndView mv = new ModelAndView("Prestamos");
-		return mv;
+		return new ModelAndView("Prestamos");
 	}
 	
 	@RequestMapping("/acceso-denegado.html")
 	public ModelAndView show403Page() {
-		ModelAndView mv = new ModelAndView("acceso-denegado");
-		return mv;
+		return new ModelAndView("acceso-denegado");
 	}
 	
 	@RequestMapping("/sesion-vencida.html")
 	public ModelAndView sesionVencida() {
-		ModelAndView mv = new ModelAndView("sesion-vencida");
-		return mv;
+		return new ModelAndView("sesion-vencida");
 	}
 }
